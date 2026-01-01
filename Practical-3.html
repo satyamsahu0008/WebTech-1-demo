@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Interactive Grocery Shop</title>
+
+<style>
+*{box-sizing:border-box;font-family:Arial;}
+
+body{
+    margin:0;
+    background:#f5fff3;
+}
+
+/* Header */
+header{
+    background:#4CAF50;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+
+/* Navbar */
+nav{
+    background:#111;
+    text-align:center;
+    padding:10px;
+}
+nav a{
+    color:white;
+    margin:10px;
+    text-decoration:none;
+}
+
+/* Container */
+.container{
+    width:90%;
+    margin:auto;
+}
+
+/* Product Cards */
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+    margin-top:20px;
+}
+
+.card{
+    border:2px solid #ccc;
+    padding:10px;
+    border-radius:10px;
+    background:white;
+    text-align:center;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+.card img{
+    width:100%;
+    border-radius:10px;
+}
+
+button{
+    background:#4CAF50;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+}
+button:hover{
+    background:darkgreen;
+}
+
+#offer{
+    background:#fffa9d;
+    padding:10px;
+    border:2px dashed orange;
+    margin-top:10px;
+}
+
+footer{
+    margin-top:20px;
+    padding:10px;
+    text-align:center;
+    background:#111;
+    color:white;
+}
+
+/* Dark Mode */
+.dark{
+    background:#222;
+    color:white;
+}
+.dark .card{background:#333;color:white;border-color:#777;}
+.dark nav{background:#000;}
+.dark footer{background:#000;}
+.dark header{background:#1f7a1f;}
+</style>
+</head>
+
+
+<body>
+
+<header>
+    <h1>FreshMart Grocery Store</h1>
+    <p>Your Trusted Local Grocery Shop</p>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Products</a>
+    <a href="#">Contact</a>
+</nav>
+
+<div class="container">
+
+<h2>Top Products</h2>
+
+<p id="offer">Offer message will appear here...</p>
+
+<h3>Cart Items: <span id="cartCount">0</span></h3>
+
+<button onclick="toggleTheme()">Toggle Theme</button>
+
+<div class="products">
+
+    <div class="card">
+        <img src="https://via.placeholder.com/200">
+        <h3>Fresh Apples</h3>
+        <p>₹120 / kg</p>
+        <button onclick="addToCart('Apples',120)">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="https://via.placeholder.com/200">
+        <h3>Milk</h3>
+        <p>₹55 / litre</p>
+        <button onclick="addToCart('Milk',55)">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="https://via.placeholder.com/200">
+        <h3>Rice</h3>
+        <p>₹80 / kg</p>
+        <button onclick="addToCart('Rice',80)">Add to Cart</button>
+    </div>
+
+</div>
+</div>
+
+<footer>
+    © 2025 FreshMart Grocery Shop
+</footer>
+
+
+<script>
+// ---------- VARIABLES ----------
+let cart = 0;
+
+// ---------- FUNCTIONS + CONTROL FLOW ----------
+function addToCart(item, price){
+    cart++;                                  // JS Basics
+    document.getElementById("cartCount").innerHTML = cart;
+
+    // Control Flow (if else)
+    if(cart >= 3){
+        document.getElementById("offer").innerHTML =
+            "🎉 Special Offer: You added 3 or more items! Extra discount applied!";
+    } else {
+        document.getElementById("offer").innerHTML =
+            "Keep shopping for exciting offers!";
+    }
+
+    alert(item + " added to cart! Price: ₹" + price);
+}
+
+// ---------- DOM MANIPULATION + CLASS TOGGLE ----------
+function toggleTheme(){
+    document.body.classList.toggle("dark");
+}
+
+// ---------- Example of querySelector ----------
+document.querySelector("h2").style.color = "green";
+
+</script>
+
+</body>
+</html>

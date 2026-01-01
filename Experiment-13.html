@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JavaScript Functions & Scope Demo</title>
+</head>
+
+<body>
+
+<h2>User Defined Functions & Scope (var, let, const)</h2>
+
+<button onclick="showSum()">Call Function 1</button>
+<button onclick="greetUser()">Call Function 2</button>
+<button onclick="scopeDemo()">Scope Demo</button>
+
+<pre id="output"></pre>
+
+<script>
+
+// ---------- USER DEFINED FUNCTION 1 ----------
+function showSum(){
+    let a = 10;
+    let b = 5;
+    let sum = a + b;
+    document.getElementById("output").textContent = 
+        "Function: showSum()\nSum of 10 + 5 = " + sum;
+}
+
+// ---------- USER DEFINED FUNCTION 2 ----------
+function greetUser(){
+    const name = "Satyam";
+    document.getElementById("output").textContent = 
+        "Function: greetUser()\nHello " + name + " 👋";
+}
+
+
+// ---------- SCOPE DEMO ----------
+function scopeDemo(){
+
+    var x = 100;      // function scoped
+    let y = 200;      // block scoped
+    const z = 300;    // constant + block scoped
+
+    let text = "Scope Demonstration:\n";
+
+    text += "Inside function:\n";
+    text += "var x = " + x + "\n";
+    text += "let y = " + y + "\n";
+    text += "const z = " + z + "\n\n";
+
+    if(true){
+        var x = 500;    // REDECLARED (var leaks out of block)
+        let y = 600;    // block scope
+        const z = 700;  // block scope
+
+        text += "Inside block:\n";
+        text += "var x = " + x + "\n";
+        text += "let y = " + y + "\n";
+        text += "const z = " + z + "\n\n";
+    }
+
+    text += "After block:\n";
+    text += "var x = " + x + "  (changed because var is function scoped)\n";
+    text += "let y = 200 (unchanged, block scoped)\n";
+    text += "const z = 300 (unchanged, block scoped)\n";
+
+    document.getElementById("output").textContent = text;
+}
+
+</script>
+
+</body>
+</html>
